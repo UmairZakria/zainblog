@@ -103,7 +103,7 @@ const Sidebar = () => {
           data.sort((a, b) => new Date(b.date) - new Date(a.date)).slice(0, 4).map((data)=>(
 
             
-          <div  onClick={() => handelredrict(data.title)} className='flex cursor-pointer  w-full h-[80px] gap-1 p-1 '>
+          <div key={data._id}  onClick={() => handelredrict(data.title)} className='flex cursor-pointer  w-full h-[80px] gap-1 p-1 '>
             <img className='h-full w-[35%]' src={data.image} alt={data.image} />
             <h2 className='line-clamp-3'>{data.title}</h2>
 
