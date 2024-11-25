@@ -50,7 +50,7 @@ const [searchdata,setSearchdata] = useState([])
     
     
     
-      }, [searchQuery])
+      }, [searchQuery,data])
     
 
 
