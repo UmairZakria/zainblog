@@ -16,7 +16,7 @@ import axios from 'axios'
 
 
 
-const page = () => {
+const Page = () => {
     const [email, setEmail] = useState('')
     const router = useRouter();
     const [password, setPassword] = useState()
@@ -69,7 +69,6 @@ const page = () => {
                 
               }, 3000);
             } else {
-                setLoadings({display:'none'})
 
               router.push("/Panel");
             }
@@ -142,4 +141,4 @@ const page = () => {
     )
 }
 
-export default page
+export default Page

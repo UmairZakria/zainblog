@@ -32,12 +32,13 @@ export default function Home() {
       const res = await axios.post('/api/findblogs', { category: 'all' });
       console.log(res)
       setData(res.data.post)
+      setLoadings({ display: 'none' });
+      document.body.style.overflow = 'auto';
 
     } catch (error) {
       console.error('Error fetching post:', error);
     } finally {
-      setLoadings({ display: 'none' });
-      document.body.style.overflow = 'auto';
+
 
     }
   };
@@ -110,13 +111,11 @@ export default function Home() {
 
         </div>
         <div className=" w-full  lg:w-[70%]  ">
-          <Image
-            className=" object-cover mx-auto"
+          <img
+            className=" object-cover w-[300px] h-[400px] mx-auto"
             src="https://picsum.photos/300/500" // Path to your image
             alt="Description of image"
 
-            width={300}
-            height={450}
           />
         </div>
 
@@ -124,7 +123,7 @@ export default function Home() {
       <div className="line h-[2px] w-full bg-gray-700 my-5"></div>
       <motion.div initial={{ opacity: 0.1, scale: 0.7 }} whileInView={{ opacity: 1, scale: 1 }} transition={{ delay: 0.5, duration: 1 }} viewport={{ once: true }} className="grid my-10 grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 w-full h-auto px-6 text-gray-500">
         <div className="border-2  dark:border dark:border-gray-500  w-full shadow-lg shadow-gray-300  dark:shadow-none  ">
-          <Image
+          <img
             className=" object-cover"
             src="https://images.pexels.com/photos/3171811/pexels-photo-3171811.jpeg?auto=compress&cs=tinysrgb&w=400" // Path to your image
             alt="Description of image"
@@ -139,7 +138,7 @@ export default function Home() {
         </div>
         <div className="border-2   dark:border dark:border-gray-500 w-full shadow-lg  shadow-gray-300  dark:shadow-none  ">
 
-          <Image
+          <img
             className=" object-cover"
             src="https://images.pexels.com/photos/2917380/pexels-photo-2917380.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" // Path to your image
             alt="Description of image"
@@ -154,7 +153,7 @@ export default function Home() {
           </h1>
         </div>
         <div className="border-2  dark:border dark:border-gray-500  w-full shadow-lg shadow-gray-300  dark:shadow-none  ">
-          <Image
+          <img
             className=" object-cover"
             src="https://images.pexels.com/photos/3051525/pexels-photo-3051525.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" // Path to your image
             alt="Description of image"
@@ -168,7 +167,7 @@ export default function Home() {
           </h1>
         </div>
         <div className="border-2   dark:border dark:border-gray-500 w-full shadow-lg shadow-gray-300   dark:shadow-none ">
-          <Image
+          <img
             className=" object-cover"
             src="https://images.pexels.com/photos/19698923/pexels-photo-19698923/free-photo-of-happy-new-year-2023.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" // Path to your image
             alt="Description of image"

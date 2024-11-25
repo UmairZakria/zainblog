@@ -1,4 +1,4 @@
-// // pages/dashboard.js
+// // Pages/dashboard.js
 // "use client";
 
 // import { SessionProvider } from "next-auth/react";
@@ -62,7 +62,7 @@
 // }
 import React from 'react'
 
-const page = () => {
+const Page = () => {
   return (
     <div className='text-8xl'>
       HElo heleo
@@ -70,4 +70,4 @@ const page = () => {
   )
 }
 
-export default page
+export default Page

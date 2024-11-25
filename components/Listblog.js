@@ -11,7 +11,7 @@ import { useRouter } from 'next/navigation'
 
 
 const Listblog = (Props) => {
-  const router = useRouter()
+  const rout = useRouter()
   const [loadings, setLoadings] = useState({ display: 'none' })
   const options = { month: 'short', day: '2-digit', year: 'numeric' };
   const [error, setError] = useState('')
@@ -30,7 +30,12 @@ const Listblog = (Props) => {
 
   }
   const handelredrict = (title) => {
-    router.push(`/Blog/${encodeURIComponent(title)}`)
+    rout.push(`/Blog/${encodeURIComponent(title)}`)
+
+
+  }
+  const handelredrict2 = (title) => {
+    rout.push(`/Panel/Blogedit/${encodeURIComponent(title)}`)
 
 
   }
@@ -93,7 +98,7 @@ const Listblog = (Props) => {
 
                     <div className='flex items-center justify-around z-50'>
 
-                      <button onClick={()=>router.push(`Blogedit/${data.title}`)} className='bg-green-500 font-medium p-2 px-4 flex items-center gap-1 justify-around'>Edit
+                      <button onClick={()=>handelredrict2(data.title)} className='bg-green-500 font-medium p-2 px-4 flex items-center gap-1 justify-around'>Edit
                         <img width="30" height="30" src="https://img.icons8.com/dotty/80/FFFFFF/pencil-tip.png" alt="pencil-tip" /> </button>
                       <button onClick={()=>handeldelete(data._id)} className='bg-red-500 font-medium p-2 px-4  flex items-center justify-around'> Delete
                         <img width="30" height="30" src="https://img.icons8.com/external-flatart-icons-solid-flatarticons/64/FFFFFF/external-dustbin-ux-and-ui-flatart-icons-solid-flatarticons.png" alt="external-dustbin-ux-and-ui-flatart-icons-solid-flatarticons" />

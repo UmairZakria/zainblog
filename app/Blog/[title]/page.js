@@ -10,27 +10,28 @@ import Scroll from "@/components/Scroll";
 
 
 import { useEffect, useState } from 'react'
-const page = ({ params }) => {
+const Page = ({ params }) => {
     const router = useRouter()
     const title = decodeURIComponent(params.title);
-    const [content, setContent] = useState('')
     const [post, setPost] = useState({title:'',content:''})
     const [loadings, setLoadings] = useState({ display: 'none' })
 
     const getdata = async (title) => {
-        document.body.style.overflow = 'hidden';
+        document.body.style.overflowY = 'hidden';
         setLoadings({ display: 'flex' });
 
 
         try {
+            console.log(title)
             const res = await axios.post('/api/findpost', { title });
             setPost(res.data.post)
+            console.log(res)
 
         } catch (error) {
             console.error('Error fetching post:', error);
             router.push('/')
         } finally {
-             document.body.style.overflow = 'auto';
+             document.body.style.overflowY = 'auto';
 
             setLoadings({ display: 'none' });
 
@@ -63,7 +64,7 @@ const page = ({ params }) => {
 
                 
                 <h1 className='text-[40px]  font-semibold w-3/4 '>{post.title}</h1>
-                <div className='h-[2px]  w-full my-5 bg-black dark:bg-white'></div>
+                <div className='h-[2px]   w-[95%] my-5 bg-black dark:bg-white'></div>
 
 
 
@@ -81,4 +82,4 @@ const page = ({ params }) => {
     )
 }
 
-export default page
+export default Page

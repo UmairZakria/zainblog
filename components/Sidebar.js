@@ -80,8 +80,8 @@ const Sidebar = () => {
         />
         <div className='space-y-4 my-2'>
           {
-              search.slice(0, 5).map((data)=>(
-                <div  onClick={() => handelredrict(data.title)} className='flex  w-full h-[80px] gap-1 p-1 cursor-pointer'>
+              search.slice(0, 5).map((data,index)=>(
+                <div key={index}  onClick={() => handelredrict(data.title)} className='flex  w-full h-[80px] gap-1 p-1 cursor-pointer'>
                 <img className='h-full w-[35%]' src={data.image} alt={data.image} />
                 <h2 className='line-clamp-3'>{data.title}</h2>
     

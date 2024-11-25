@@ -14,95 +14,97 @@ import Image from 'next/image'
 
 
 
-const page = ({ params }) => {
-    const router = useRouter()
-    const editor = useRef(null);
-    const [content, setContent] = useState('Loading...');
-    const [post, setPost] = useState({title:'Loading...',discription:'Loading...',image:'Loading...',category:'Loading...',content:'Loading...'})
-    const [ctitle, setCtitle] = useState(post.title)
-    const [discription, setDiscription] = useState(post.discription)
-    const [category, setCategory] = useState(post.category)
-    const [error, setError] = useState('')
+const Page = ({ params }) => {
+  const title = decodeURIComponent(params.title);
 
-    const [image, setImage] = useState(post.image)
-    const title = decodeURIComponent(params.title);
-    const [loadings, setLoadings] = useState({ display: 'none' })
-    const getdata = async (title) => {
-        document.body.style.overflow = 'hidden';
-        setLoadings({ display: 'flex' });
+  // const rout = useRouter()
+  const editor = useRef(null);
+  const [content, setContent] = useState('Loading...');
+  const [post, setPost] = useState({ title: 'Loading...', discription: 'Loading...', image: 'Loading...', category: 'Loading...', content: 'Loading...' })
+  const [ctitle, setCtitle] = useState(post.title)
+  const [discription, setDiscription] = useState(post.discription)
+  const [category, setCategory] = useState(post.category)
+  const [error, setError] = useState('')
 
+  const [image, setImage] = useState(post.image)
+  const [loadings, setLoadings] = useState({ display: 'none' })
 
-        try {
-            const res = await axios.post('/api/findpost', { title });
-            console.log(res.data.post)
-            setPost(res.data.post)
-            setContent(res.data.post.content)
-            setCtitle(res.data.post.title)
-            setCategory(res.data.post.category)
-            setImage(res.data.post.image)
-            setDiscription(res.data.post.discription)
+  const getdata =  (title) => {
+    document.body.style.overflowY = 'hidden';
+    setLoadings({ display: 'flex' });
 
 
-        } catch (error) {
-            console.error('Error fetching post:', error);
-            router.push('/')
-        } finally {
-             document.body.style.overflow = 'auto';
+    try {
+    axios.post('/api/findpost', {title})
+    .then((res)=>{
+      setPost(res.data.post)
+      setPost(res.data.post)
+      setContent(res.data.post.content)
+      setCtitle(res.data.post.title)
+      setCategory(res.data.post.category)
+      setImage(res.data.post.image)
+      setDiscription(res.data.post.discription)
+      document.body.style.overflowY = 'auto';
+      setLoadings({ display: 'none' });
+    })
+    .catch((err)=>{console.log(err)})
 
-            setLoadings({ display: 'none' });
 
 
-        }
-    };
-    useEffect(() => {
-        getdata(title);
+    } catch (error) {
+      console.error('Error fetching post:', error);
+      document.body.style.overflowY = 'auto';
+      setLoadings({ display: 'none' });
+    } 
+  };
+  useEffect(() => {
 
-    }, [title]);
-    const handelsubmit = (e) => {
-        e.preventDefault();
-        setLoadings({ display: 'flex' });
-        document.body.style.overflow = 'hidden';
-        axios.put('/api/blogpost', { title,ctitle, discription, image, category, content })
-        .then(response => 
-    
-        {            
+    getdata(title);
+
+  }, [title]);
+  const handelsubmit = (e) => {
+    e.preventDefault();
+    setLoadings({ display: 'flex' });
+    document.body.style.overflow = 'hidden';
+    axios.put('/api/blogpost', { title, ctitle, discription, image, category, content })
+      .then((response) => {
         setLoadings({ display: 'none' });
         setError('done')
         setTimeout(() => {
-        setError('')
-    
-          
+          setError('')
+
+
         }, 3000);
         document.body.style.overflow = 'auto';
-        
+
       }
-        )
-        .catch(error => console.log(error));
-    
-      }
+      )
+      .catch(error => console.log(error));
+
+  }
 
   return (
     <>
 
-<div style={loadings} className='w-full h-screen absolute flex items-center justify-center top-0 left-0 bg-[#0000005b] '>
-    <Image
-        className=" object-cover    "
-        src={loading} // Path to your image
-        sizes={50}
-        alt="Description of image"
-    />
-</div>
+      <div style={loadings} className='w-full h-screen absolute flex items-center justify-center top-0 left-0 bg-[#0000005b] '>
+        <Image
+          className=" object-cover    "
+          src={loading} // Path to your image
+          sizes={50}
+          alt="Description of image"
+        />
+      </div>
 
-<div>
-    <Scroll/>
-<form onSubmit={handelsubmit} className=' container mx-auto flex flex-col gap-4'>
+      <div>
+        <Scroll />
+        <form onSubmit={handelsubmit} className=' container mx-auto flex flex-col gap-4'>
           <label className='text-2xl text-red-500 font-semibold'>{error}</label>
           <input type="submit" value={'UPdate'} className='w-full text-white  h-[50px] bg-green-600 text-2xl ' />
 
           <label htmlFor="" className='text-xl'>Meta Title as Title</label>
           <input value={ctitle} onChange={(e) => setCtitle(e.target.value)} required type="text" placeholder='Title' className='w-full h-[40px] text-lg  border-2 dark:border-none p-2' />
           <label htmlFor="" className='text-xl'>Meta Discription as Discription</label>
-          <textarea value={discription}  onChange={(e) => setDiscription(e.target.value)} required placeholder='Discription' className='w-full h-[80px] text-lg border-2 dark:border-none p-2' name="" id=""></textarea>
+          <textarea value={discription} onChange={(e) => setDiscription(e.target.value)} required placeholder='Discription' className='w-full h-[80px] text-lg border-2 dark:border-none p-2' name="" id=""></textarea>
           <select value={category} onChange={(e) => setCategory(e.target.value)} required name="" id="" className='p-2  border-2 dark:border-none'>
             <option value="">Select category</option>
 
@@ -127,7 +129,7 @@ const page = ({ params }) => {
             />
           </div>
         </form>
-</div>
+      </div>
 
 
 
@@ -138,4 +140,4 @@ const page = ({ params }) => {
   )
 }
 
-export default page
+export default Page

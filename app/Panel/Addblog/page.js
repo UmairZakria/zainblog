@@ -3,7 +3,7 @@ import BlogEditor from "@/components/BlogEditor";
 import Scroll from "@/components/Scroll";
 
 
-const page = () => {
+const Page = () => {
   return (
     <div>
       <BlogEditor />
@@ -12,4 +12,4 @@ const page = () => {
   )
 }
 
-export default page
+export default Page

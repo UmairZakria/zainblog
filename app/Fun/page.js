@@ -7,7 +7,7 @@ import React from 'react'
 import Image from 'next/image'
 import Listblog from '@/components/Listblog'
 
-const page = () => {
+const Page = () => {
   const [data, setData] = useState([])
   const [loadings, setLoadings] = useState({ display: 'none' })
 
@@ -57,4 +57,4 @@ const page = () => {
   )
 }
 
-export default page
+export default Page

@@ -50,7 +50,7 @@ export function ModeToggle() {
   return (
     <>
       <div  onClick={handelmenu} className="relative p-[5px] cursor-pointer border  rounded-lg">
-        <Image src={icon} width={20} height={20} />
+        <Image src={icon} alt="icon" width={20} height={20} />
         <div style={menufor} className='absolute  md:right-2 lg:right-2 font-[500] gap-2  -bottom-[120px] p-1 text-lg text-left border py-2 px-2  flex-col items-start   rounded-sm w-[100px] bg-[white] text-black'  >
           <button className="flex gap-2  "  onClick={() =>  setTheme('dark')}>Dark <Image src={wmoon}  alt="theme" width={24} height={24} /></button>
           <button  className="flex gap-2  " onClick={() => setTheme('light')} >Light <Image src={sun} alt="theme"  width={24} height={24} /></button>

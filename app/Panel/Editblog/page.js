@@ -8,7 +8,7 @@ import { useState, useEffect } from 'react'
 import React from 'react'
 import Listblog from '@/components/Listblog'
 
-const page = () => {
+const Page = () => {
 
   const [searchQuery, setSearchQuery] = useState('')
 const [searchdata,setSearchdata] = useState([])
@@ -83,4 +83,4 @@ const [searchdata,setSearchdata] = useState([])
     )
 }
 
-export default page
+export default Page
