@@ -37,10 +37,7 @@ export default function Home() {
 
     } catch (error) {
       console.error('Error fetching post:', error);
-    } finally {
-
-
-    }
+    } 
   };
 
   useEffect(() => {
