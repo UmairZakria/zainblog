@@ -1,0 +1,31 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+/* styles/globals.css */
+#nprogress .bar {
+    background: rgb(0, 235, 70); 
+    height: 4px; 
+  }
+  
+#nprogress .peg {
+    box-shadow: 0 0 10px white, 0 0 5px white; 
+  }
+  
+
+  /* styles/globals.css */
+body {
+  transition: background-color 0.3s, color 0.3s;
+}
+
+body.dark {
+  background-color: #1a202c;
+  color: #f7fafc;
+}
+
+[class='dark'] {
+  background-color:  #1E1E1E;
+  color: #ffffff; /* Dark mode text color */
+}
+

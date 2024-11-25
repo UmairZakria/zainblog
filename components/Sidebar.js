@@ -1,0 +1,121 @@
+'use client'
+import { useState, useEffect } from 'react'
+import React from 'react'
+import loading from './ui/loading.gif'
+import Image from 'next/image'
+import axios from 'axios'
+import { useRouter } from 'next/navigation'
+const Sidebar = () => {
+  const router = useRouter()
+  const [searchQuery, setSearchQuery] = useState('')
+  const [data, setData] = useState([])
+  const [loadings, setLoadings] = useState({ display: 'none' })
+  const [search, setSearch] = useState([])
+
+
+  const getdata = async () => {
+    setLoadings({ display: 'flex' });
+    document.body.style.overflow = 'hidden';
+
+
+    try {
+      const res = await axios.post('/api/findblogs', { category: 'all' });
+      console.log(res)
+      setData(res.data.post)
+
+    } catch (error) {
+      console.error('Error fetching post:', error);
+    } finally {
+      setLoadings({ display: 'none' });
+      document.body.style.overflow = 'auto';
+
+    }
+  };
+  useEffect(() => {
+    getdata();
+
+
+
+  }, []);
+  useEffect(() => {
+
+    const searchdata = data.filter(item =>
+      item.title.toLowerCase().includes(searchQuery.toLowerCase())
+      ||
+      item.category.toLowerCase().includes(searchQuery.toLowerCase())
+    )
+
+    setSearch(searchdata)
+    if (searchQuery === ''){
+    setSearch([])
+
+    }
+
+
+
+  }, [searchQuery])
+
+  const handelredrict = (title) => {
+    router.push(`/Blog/${encodeURIComponent(title)}`)
+
+
+  }
+  return (
+    <>
+      <div style={loadings} className='w-full h-screen absolute flex items-center justify-center top-0 left-0 bg-[#0000005b] '>
+        <Image
+          className=" object-cover    "
+          src={loading}
+          sizes={50}
+          alt="Loading"
+        />
+      </div>
+      <div className='border-l-2 w-[450px] px-3 hidden md:hidden lg:block '>
+        <input
+          type="text"
+          id="search"
+          placeholder="Search Article "
+          className="search w-full box-border dark:border-none border-2 p-3 pr-[50px] text-lg placeholder:text-[16px]  rounded-lg "
+          onChange={(e) => setSearchQuery(e.target.value)}
+        />
+        <div className='space-y-4 my-2'>
+          {
+              search.slice(0, 5).map((data)=>(
+                <div  onClick={() => handelredrict(data.title)} className='flex  w-full h-[80px] gap-1 p-1 cursor-pointer'>
+                <img className='h-full w-[35%]' src={data.image} alt={data.image} />
+                <h2 className='line-clamp-3'>{data.title}</h2>
+    
+    
+              </div>
+
+
+              ))
+            
+
+
+          }
+
+        </div>
+
+        <h1 className='text-2xl my-5 '>Latest Articles</h1>
+        <div className='space-y-4 '>
+        {
+          data.sort((a, b) => new Date(b.date) - new Date(a.date)).slice(0, 4).map((data)=>(
+
+            
+          <div  onClick={() => handelredrict(data.title)} className='flex cursor-pointer  w-full h-[80px] gap-1 p-1 '>
+            <img className='h-full w-[35%]' src={data.image} alt={data.image} />
+            <h2 className='line-clamp-3'>{data.title}</h2>
+
+
+          </div>
+          ))
+          }
+
+        </div>
+      </div>
+    </>
+  )
+}
+
+export default Sidebar
