@@ -185,7 +185,7 @@ export default function Home() {
         {
         data.sort((a, b) => new Date(b.date) - new Date(a.date)).slice(0, 4).map((data)=>(
 
-          <div className="lg:col-span-2 md:h-[200px] h-[80px] lg:h-[200px]  flex     md:p-0 lg:border-none md:border-none  flex-row md:flex-row gap-2 items-center justify-between">
+          <div key={data._id} className="lg:col-span-2 md:h-[200px] h-[80px] lg:h-[200px]  flex     md:p-0 lg:border-none md:border-none  flex-row md:flex-row gap-2 items-center justify-between">
             <img src={data.image} className="object-cover h-full  md:w-[300px] w-1/3 lg:w-[300px] " alt="" />
             <div className="  w-full  flex flex-col  gap-1 h-auto lg:h-full md:h-full items-start md:justify-evenly justify-start lg:justify-evenly ">
 

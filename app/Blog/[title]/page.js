@@ -42,7 +42,6 @@ const Page = ({ params }) => {
     };
 
     useEffect(() => {
-        console.log(title);
         getdata(title);
     }, [title]);
 
