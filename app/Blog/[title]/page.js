@@ -7,6 +7,8 @@ import Sidebar from '@/components/Sidebar'
 import axios from 'axios'
 import { useRouter } from 'next/navigation'
 import Scroll from "@/components/Scroll";
+import Link from 'next/link'
+import { format } from 'date-fns';
 
 
 import { useEffect, useState } from 'react'
@@ -48,9 +50,9 @@ const Page = ({ params }) => {
 
     return (
         <>
-      <Scroll />
+      {/* <Scroll /> */}
         
-        <div className='flex lg:w-[95%] w-full  ml-[4%] my-10 gap-4  h-auto min-h-screen '>
+        <div className='flex flex-col lg:flex-row md:flex-col lg:w-[95%] w-full ml-0 px-4 lg:ml-[4%] my-10 gap-4  h-auto min-h-screen '>
 
             <div style={loadings} className='w-full h-screen absolute flex items-center justify-center top-0 left-0 bg-[#0000005b] '>
                 <Image
@@ -63,8 +65,16 @@ const Page = ({ params }) => {
             <div className=' w-full h-full '>
 
                 
-                <h1 className='text-[40px]  font-semibold w-3/4 '>{post.title}</h1>
-                <div className='h-[2px]   w-[95%] my-5 bg-black dark:bg-white'></div>
+                <h1 className='lg:text-[40px] text-[20px] md:text-[30px]  font-semibold w-full lg:w-3/4 '>{post.title}</h1>
+                <div className="flex items-center gap-24 w-full">
+
+
+                <span className='dark:text-gray-400 text-gray-600'>{post.category}</span>
+                <span>{post.date?(format(new Date(post.date), 'MMM dd yyyy')):''}</span>
+
+
+                </div>
+                <div className='h-[2px]    w-[95%] my-5 bg-black dark:bg-white'></div>
 
 
 

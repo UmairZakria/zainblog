@@ -13,15 +13,7 @@ const Navbar = () => {
     setIsOpen(!isOpen); 
 
   };
-  useEffect(() => {
-    
-    
-    document.body.style.overflowX = 'hidden';
-          
 
-
-  }, [isOpen])
-  
   
 
   return (
@@ -68,8 +60,8 @@ const Navbar = () => {
 
         {/* Mobile Menu */}
         <motion.div
-          initial={{ x: "100%" }}
-          animate={{ x: isOpen ? 0 : "100%" }}
+          initial={{ y: "-100vh" }}
+          animate={{ y: isOpen ? 0 : "100vh" }}
           transition={{
             delay: 0.1,
             duration: 0.3,

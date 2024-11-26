@@ -37,7 +37,7 @@ export default function Home() {
 
     } catch (error) {
       console.error('Error fetching post:', error);
-    } 
+    }
   };
 
   useEffect(() => {
@@ -180,83 +180,163 @@ export default function Home() {
       </motion.div>
       <motion.div initial={{ y: 200 }} whileInView={{ y: 0 }} transition={{ delay: 0.5, duration: 0.5, type: 'spring', stiffness: 150 }} viewport={{ once: true }}>
 
-        <h1 className=" w-[95%] mx-auto  text-3xl lg:text-4xl mb-10 mt-20" >Latest Articles To Read</h1>
-        <div className="grid grid-cols-1  lg:grid-cols-3  gap-5  w-[95%] mx-auto h-auto ">
-          <div className="lg:col-span-2 flex flex-col border border-gray-500 p-2 md:p-0 lg:border-none md:border-none  lg:flex-row md:flex-row md:gap-2  lg:gap-2 items-center justify-center">
-            <img src="https://picsum.photos/1200/700" className="object-cover  md:w-[300px] w-full lg:w-[300px] h-[300px]" alt="" />
-            <div className=" flex flex-col mt-4 gap-1 h-auto lg:h-full md:h-full items-center md:justify-evenly justify-start lg:justify-evenly ">
+        <h1 className=" w-[90%] mx-auto  text-3xl lg:text-4xl mb-10 mt-20" >Latest Articles To Read :</h1>
+        <div className="flex w-[88%] flex-col   gap-5   mx-auto h-auto ">
+        {
+        data.sort((a, b) => new Date(b.date) - new Date(a.date)).slice(0, 4).map((data)=>(
 
-              <h1 className="md:text-3xl text-2xl font-medium lg:text-3xl line-clamp-3">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Assumenda.</h1>
-              <p className="line-clamp-3 text-gray-300 text-md">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel eveniet corrupti tempora consequatur incidunt illo dicta consectetur fugit, aspernatur animi repellat error. Similique, autem mollitia perferendis nesciunt sint officiis dolor.</p>
+          <div className="lg:col-span-2 md:h-[200px] h-[80px] lg:h-[200px]  flex     md:p-0 lg:border-none md:border-none  flex-row md:flex-row gap-2 items-center justify-between">
+            <img src={data.image} className="object-cover h-full  md:w-[300px] w-1/3 lg:w-[300px] " alt="" />
+            <div className="  w-full  flex flex-col  gap-1 h-auto lg:h-full md:h-full items-start md:justify-evenly justify-start lg:justify-evenly ">
+
+              <h1 className="md:text-3xl text-lg font-medium lg:text-3xl line-clamp-3">{data.title}</h1>
+              <p className="hidden lg:block md:block line-clamp-3 text-gray-800 dark:text-gray-300 text-md">{data.discription}</p>
             </div>
 
 
           </div>
-          <div className=" relative">
-            <img src="https://picsum.photos/1200/700" className="object-cover w-full h-[300px]" alt="" />
-            <div className="absolute top-1/3 left-0 bg-[#0000007e] text-gray-300 w-full h-[200px] text-center p-1 line-clamp-5 flex justify-center items-center text-xl">
-              Lorem  mollitia laboriosam! Eos totam, atque accusamus sunt necessitatibus. similique voluptate, cum temporibus voluptatibus quam eligendi magnam nemo?
 
-            </div>
 
-          </div>
 
+        ))
+        }
+        </div>
+
+      </motion.div>
+      <div>
+
+        <div className="container mb-10 mt-20 mx-auto flex justify-between items-center w-full ">
+
+          <h1 className="  font-bold  text-4xl lg:text-5xl " >Party</h1>
+          <Link href={'/Party'} className='underline text-blue-600 cursor-pointer'>View all</Link>
+        </div>
+
+        <div className="container relative mx-auto my-10  ">
+          <Slider {...settings}>
+
+            {data
+              .filter(item => item.category.includes('Party'))
+              .map((data, index) => (
+                <>
+                  <motion.div
+                    initial={{ scale: 0.4 }}
+                    whileInView={{ scale: 1 }}
+                    transition={{ delay: 0.1, duration: 0.5 }}
+                    viewport={{ once: true }}
+                    key={data._id} onClick={() => handelredrict(data.title)} className='border-gray-400 dark:border-gray-700   rounded-lg border  mx-2 cursor-pointer space-y-1 pb-10 flex flex-col '>
+
+                    <img src={data.image} className='object-cover  rounded-t-lg  h-[250px]' alt={data.title} />
+
+                    <div className='mx-4 space-y-2 h-[150px] '>
+                      <h1 className='dark:text-[#ffffffe0] md:text-3xl text-xl  lg:text-2xl line-clamp-2 font-semibold'>{data.title} </h1>
+                      <div className='flex w-full items-center justify-between  text-gray-600 font-normal dark:text-[#ffffffe0]' >
+                        <span>{data.category}</span>
+                        <span>{format(new Date(data.date), 'MMM dd yyyy')}</span>
+                      </div>
+                      <p className='text-gray-700 dark:text-[#a09f9fe0] line-clamp-3 text-sm'>{data.discription}</p>
+                    </div>
+                  </motion.div>
+                </>
+              ))
+            }
+          </Slider>
 
         </div>
-      </motion.div>
-    <div>
-
-      <div className="container mb-10 mt-20 mx-auto flex justify-between items-center w-full ">
-
-        <h1 className="  font-bold  text-4xl lg:text-5xl " >Party</h1>
-        <Link href={'/Party'} className='underline text-blue-600 cursor-pointer'>View all</Link>
       </div>
+      <div>
 
-      <div className="container relative mx-auto my-10  ">
-        <Slider {...settings}>
+        <div className="container mb-10 mt-20 mx-auto flex justify-between items-center w-full ">
 
-          {data
-            .filter(item => item.category.includes('Party'))
-            .map((data, index) => (
-              <>
-                <motion.div
-                  initial={{ scale: 0.4 }}
-                  whileInView={{ scale: 1 }}
-                  transition={{ delay: 0.1, duration: 0.5 }}
-                  viewport={{ once: true }}
-                  key={data._id} onClick={() => handelredrict(data.title)} className='border-gray-400 dark:border-gray-700   rounded-lg border  mx-2 cursor-pointer space-y-1 pb-10 flex flex-col '>
+          <h1 className="  font-bold  text-4xl lg:text-5xl " >Wedding</h1>
+          <Link href={'/Wedding'} className='underline text-blue-600 cursor-pointer'>View all</Link>
+        </div>
 
-                  <img src={data.image} className='object-cover  rounded-t-lg  h-[250px]' alt={data.title} />
+        <div className="container relative mx-auto my-10  ">
+          <Slider {...settings}>
 
-                  <div className='mx-4 space-y-2 h-[150px] '>
-                    <h1 className='dark:text-[#ffffffe0] md:text-3xl text-xl  lg:text-2xl line-clamp-2 font-semibold'>{data.title} </h1>
-                    <div className='flex w-full items-center justify-between  text-gray-600 font-normal dark:text-[#ffffffe0]' >
-                      <span>{data.category}</span>
-                      <span>{format(new Date(data.date), 'MMM dd yyyy')}</span>
+            {data
+              .filter(item => item.category.includes('Wedding'))
+              .map((data, index) => (
+                <>
+                  <motion.div
+                    initial={{ scale: 0.4 }}
+                    whileInView={{ scale: 1 }}
+                    transition={{ delay: 0.1, duration: 0.5 }}
+                    viewport={{ once: true }}
+                    key={data._id} onClick={() => handelredrict(data.title)} className='border-gray-400 dark:border-gray-700   rounded-lg border  mx-2 cursor-pointer space-y-1 pb-10 flex flex-col '>
+
+                    <img src={data.image} className='object-cover  rounded-t-lg  h-[250px]' alt={data.title} />
+
+                    <div className='mx-4 space-y-2 h-[150px] '>
+                      <h1 className='dark:text-[#ffffffe0] md:text-3xl text-xl  lg:text-2xl line-clamp-2 font-semibold'>{data.title} </h1>
+                      <div className='flex w-full items-center justify-between  text-gray-600 font-normal dark:text-[#ffffffe0]' >
+                        <span>{data.category}</span>
+                        <span>{format(new Date(data.date), 'MMM dd yyyy')}</span>
+                      </div>
+                      <p className='text-gray-700 dark:text-[#a09f9fe0] line-clamp-3 text-sm'>{data.discription}</p>
                     </div>
-                    <p className='text-gray-700 dark:text-[#a09f9fe0] line-clamp-3 text-sm'>{data.discription}</p>
-                  </div>
-                </motion.div>
-              </>
-            ))
-          }
-        </Slider>
+                  </motion.div>
+                </>
+              ))
+            }
+          </Slider>
+
+        </div>
+      </div>
+      <div>
+
+        <div className="container mb-10 mt-20 mx-auto flex justify-between items-center w-full ">
+
+          <h1 className="  font-bold  text-4xl lg:text-5xl " >Fun Ideas</h1>
+          <Link href={'/Fun'} className='underline text-blue-600 cursor-pointer'>View all</Link>
+        </div>
+
+        <div className="container relative mx-auto my-10  ">
+          <Slider {...settings}>
+
+            {data
+              .filter(item => item.category.includes('FunIdeas'))
+              .map((data, index) => (
+                <>
+                  <motion.div
+                    initial={{ scale: 0.4 }}
+                    whileInView={{ scale: 1 }}
+                    transition={{ delay: 0.1, duration: 0.5 }}
+                    viewport={{ once: true }}
+                    key={data._id} onClick={() => handelredrict(data.title)} className='border-gray-400 dark:border-gray-700   rounded-lg border  mx-2 cursor-pointer space-y-1 pb-10 flex flex-col '>
+
+                    <img src={data.image} className='object-cover  rounded-t-lg  h-[250px]' alt={data.title} />
+
+                    <div className='mx-4 space-y-2 h-[150px] '>
+                      <h1 className='dark:text-[#ffffffe0] md:text-3xl text-xl  lg:text-2xl line-clamp-2 font-semibold'>{data.title} </h1>
+                      <div className='flex w-full items-center justify-between  text-gray-600 font-normal dark:text-[#ffffffe0]' >
+                        <span>{data.category}</span>
+                        <span>{format(new Date(data.date), 'MMM dd yyyy')}</span>
+                      </div>
+                      <p className='text-gray-700 dark:text-[#a09f9fe0] line-clamp-3 text-sm'>{data.discription}</p>
+                    </div>
+                  </motion.div>
+                </>
+              ))
+            }
+          </Slider>
+
+        </div>
 
       </div>
-    </div>
-    <div>
+      <div>
 
 <div className="container mb-10 mt-20 mx-auto flex justify-between items-center w-full ">
 
-  <h1 className="  font-bold  text-4xl lg:text-5xl " >Wedding</h1>
-  <Link href={'/Wedding'} className='underline text-blue-600 cursor-pointer'>View all</Link>
+  <h1 className="  font-bold  text-4xl lg:text-5xl " >Halloween</h1>
+  <Link href={'/Halloween'} className='underline text-blue-600 cursor-pointer'>View all</Link>
 </div>
 
 <div className="container relative mx-auto my-10  ">
   <Slider {...settings}>
 
     {data
-      .filter(item => item.category.includes('Wedding'))
+      .filter(item => item.category.includes('Halloween'))
       .map((data, index) => (
         <>
           <motion.div
@@ -283,46 +363,7 @@ export default function Home() {
   </Slider>
 
 </div>
-</div>
-<div>
 
-<div className="container mb-10 mt-20 mx-auto flex justify-between items-center w-full ">
-
-  <h1 className="  font-bold  text-4xl lg:text-5xl " >Fun Ideas</h1>
-  <Link href={'/Fun'} className='underline text-blue-600 cursor-pointer'>View all</Link>
-</div>
-
-<div className="container relative mx-auto my-10  ">
-  <Slider {...settings}>
-
-    {data
-      .filter(item => item.category.includes('FunIdeas'))
-      .map((data, index) => (
-        <>
-          <motion.div
-            initial={{ scale: 0.4 }}
-            whileInView={{ scale: 1 }}
-            transition={{ delay: 0.1, duration: 0.5 }}
-            viewport={{ once: true }}
-            key={data._id} onClick={() => handelredrict(data.title)} className='border-gray-400 dark:border-gray-700   rounded-lg border  mx-2 cursor-pointer space-y-1 pb-10 flex flex-col '>
-
-            <img src={data.image} className='object-cover  rounded-t-lg  h-[250px]' alt={data.title} />
-
-            <div className='mx-4 space-y-2 h-[150px] '>
-              <h1 className='dark:text-[#ffffffe0] md:text-3xl text-xl  lg:text-2xl line-clamp-2 font-semibold'>{data.title} </h1>
-              <div className='flex w-full items-center justify-between  text-gray-600 font-normal dark:text-[#ffffffe0]' >
-                <span>{data.category}</span>
-                <span>{format(new Date(data.date), 'MMM dd yyyy')}</span>
-              </div>
-              <p className='text-gray-700 dark:text-[#a09f9fe0] line-clamp-3 text-sm'>{data.discription}</p>
-            </div>
-          </motion.div>
-        </>
-      ))
-    }
-  </Slider>
-
-</div>
 </div>
 
     </>

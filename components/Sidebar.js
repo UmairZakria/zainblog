@@ -5,13 +5,24 @@ import loading from './ui/loading.gif'
 import Image from 'next/image'
 import axios from 'axios'
 import { useRouter } from 'next/navigation'
+import Slider from 'react-slick'
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 const Sidebar = () => {
   const router = useRouter()
   const [searchQuery, setSearchQuery] = useState('')
   const [data, setData] = useState([])
   const [loadings, setLoadings] = useState({ display: 'none' })
   const [search, setSearch] = useState([])
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    arrows: false
 
+  }
 
   const getdata = async () => {
     setLoadings({ display: 'flex' });
@@ -20,7 +31,6 @@ const Sidebar = () => {
 
     try {
       const res = await axios.post('/api/findblogs', { category: 'all' });
-      console.log(res)
       setData(res.data.post)
 
     } catch (error) {
@@ -70,7 +80,7 @@ const Sidebar = () => {
           alt="Loading"
         />
       </div>
-      <div className='border-l-2 w-[450px] px-3 hidden md:hidden lg:block '>
+      <div className='lg:border-l-2 md:border-t-2 lg:border-t-0 md:border-l-0 pt-4 lg:w-[450px] w-full px-3 block '>
         <input
           type="text"
           id="search"
@@ -98,20 +108,47 @@ const Sidebar = () => {
         </div>
 
         <h1 className='text-2xl my-5 '>Latest Articles</h1>
-        <div className='space-y-4 '>
+        <div className='space-y-4 hidden lg:block md:block '>
         {
           data.sort((a, b) => new Date(b.date) - new Date(a.date)).slice(0, 4).map((data)=>(
 
             
-          <div key={data._id}  onClick={() => handelredrict(data.title)} className='flex cursor-pointer  w-full h-[80px] gap-1 p-1 '>
-            <img className='h-full w-[35%]' src={data.image} alt={data.image} />
-            <h2 className='line-clamp-3'>{data.title}</h2>
+          <div key={data._id}  onClick={() => handelredrict(data.title)} className='flex cursor-pointer   w-full lg:h-[80px] md:h-[180px] gap-3 lg:gap-1 p-1 '>
+            <img className='h-full md:w-[500px] lg:w-[35%]' src={data.image} alt={data.image} />
+            <div className='w-full flex  justify-evenly   flex-col'>
+
+            <h2 className='line-clamp-3 lg:text-[16px] md:text-2xl'>{data.title}</h2>
+            <p className='text-gray-700 lg:hidden md:block dark:text-[#a09f9fe0] line-clamp-4 text-sm'>{data.discription}</p>
+            
+            </div>
 
 
           </div>
           ))
           }
 
+        </div>
+      <div className="lg:hidden md:hidden w-full h-auto  ">
+        <Slider {...settings}>
+        {
+          data.sort((a, b) => new Date(b.date) - new Date(a.date)).slice(0, 5).map((data)=>(
+
+            
+            <div key={data._id} onClick={() => handelredrict(data.title)} className='border-gray-400 dark:border-gray-700   rounded-lg border cursor-pointer space-y-1 pb-3 flex flex-col '>
+
+            <img src={data.image} className='object-cover  rounded-t-lg w-full h-[180px]' alt={data.title} />
+
+            <div className='mx-4 space-y-2'>
+              <h1 className='dark:text-[#ffffffe0] md:text-3xl text-xl  lg:text-2xl line-clamp-2 font-semibold'>{data.title} </h1>
+              <div className='flex w-full items-center justify-between  text-gray-600 font-normal dark:text-[#ffffffe0]' >
+                <span>{data.category}</span>
+              </div>
+              <p className='text-gray-700 dark:text-[#a09f9fe0] line-clamp-4 text-sm'>{data.discription}</p>
+            </div>
+          </div>
+          ))
+          }
+        </Slider>
         </div>
       </div>
     </>
