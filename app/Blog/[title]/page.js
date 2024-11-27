@@ -7,8 +7,9 @@ import Sidebar from '@/components/Sidebar'
 import axios from 'axios'
 import { useRouter } from 'next/navigation'
 import Scroll from "@/components/Scroll";
-import Link from 'next/link'
 import { format } from 'date-fns';
+import Head from 'next/head';
+import TextReader from '../../../components/TextReader'
 
 
 import { useEffect, useState } from 'react'
@@ -31,7 +32,7 @@ const Page = ({ params }) => {
 
         } catch (error) {
             console.error('Error fetching post:', error);
-            router.push('/')
+            router.refresh()
         } finally {
              document.body.style.overflowY = 'auto';
 
@@ -49,7 +50,13 @@ const Page = ({ params }) => {
 
     return (
         <>
-      {/* <Scroll /> */}
+      <Scroll />
+      <Head>
+        <title>{post.title}</title>
+        <meta name="description" content={post.discription} />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta charSet="UTF-8" />
+      </Head>
         
         <div className='flex flex-col lg:flex-row md:flex-col lg:w-[95%] w-full ml-0 px-4 lg:ml-[4%] my-10 gap-4  h-auto min-h-screen '>
 
@@ -65,11 +72,12 @@ const Page = ({ params }) => {
 
                 
                 <h1 className='lg:text-[40px] text-[20px] md:text-[30px]  font-semibold w-full lg:w-3/4 '>{post.title}</h1>
+                {/* <TextReader text={post.content} /> */}
                 <div className="flex items-center gap-24 w-full">
 
 
                 <span className='dark:text-gray-400 text-gray-600'>{post.category}</span>
-                <span>{post.date?(format(new Date(post.date), 'MMM dd yyyy')):''}</span>
+                <span>{post.date?(format(new Date(post.date), 'MMM dd yyyy')):''} </span>
 
 
                 </div>

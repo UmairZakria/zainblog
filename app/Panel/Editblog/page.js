@@ -16,6 +16,7 @@ const [searchdata,setSearchdata] = useState([])
     const [loadings, setLoadings] = useState({ display: 'none' })
 
     const getdata = async () => {
+        window.scroll(0,0)
         setLoadings({ display: 'flex' });
         document.body.style.overflow = 'hidden';
 
@@ -75,7 +76,7 @@ const [searchdata,setSearchdata] = useState([])
 
             </div>
             <Listblog
-                data={searchdata.length > 0?searchdata:data}
+                data={searchdata.length > 0? searchdata:data}
                 admin={true}
             />
 

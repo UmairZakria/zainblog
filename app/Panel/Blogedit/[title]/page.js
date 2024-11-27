@@ -113,6 +113,7 @@ const Page = ({ params }) => {
             <option value="Party">Party</option>
             <option value="Wedding">Wedding</option>
 
+
           </select>
           <label htmlFor="" className='text-xl'>Meta Image as Front Image</label>
           <input value={image} required onChange={(e) => setImage(e.target.value)} type="text" placeholder='Image Link' className='w-full h-[40px] text-lg  border-2 dark:border-none p-2' />

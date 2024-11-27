@@ -40,7 +40,7 @@ const Listblog = (Props) => {
 
   }
   const handeldelete = async (id) =>{
-    
+    window.scroll(0,0)
     setLoadings({ display: 'flex' });
     document.body.style.overflow = 'hidden';
 
@@ -58,8 +58,6 @@ const Listblog = (Props) => {
     } finally {
         console.log('done')
         window.location.reload()
-        setLoadings({ display: 'none' });
-        document.body.style.overflow = 'auto';
   
 
     }
