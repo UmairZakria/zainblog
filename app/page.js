@@ -106,7 +106,7 @@ export default function Home() {
           <div className="w-[90%]  py-12 lg:py-24 mx-auto flex flex-wrap ">
             <div className="flex w-full mb-20 flex-wrap">
               <h1 className="sm:text-3xl text-2xl font-medium title-font lg:w-1/3 lg:mb-0 mb-4">Master Cleanse Reliac Heirloom</h1>
-              <p className="lg:pl-6 lg:w-2/3 mx-auto leading-relaxed text-base">Whatever cardigan tote bag tumblr hexagon brooklyn asymmetrical gentrify, subway tile poke farm-to-table. Franzen you probably haven't heard of them man bun deep jianbing selfies heirloom.</p>
+              <p className="lg:pl-6 lg:w-2/3 mx-auto leading-relaxed text-base">Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores aliquam fugiat nihil facilis itaque exercitationem error ipsam totam tempora earum modi voluptatem quisquam maxime unde at aut architecto, quia ea!</p>
             </div>
             {
               data.length > 0 ? (
