@@ -24,14 +24,14 @@ export default function Home() {
 
 
   const getdata = async () => {
-    window.scroll(0,0)
+    window.scroll(0, 0)
     setLoadings({ display: 'flex' });
     document.body.style.overflow = 'hidden';
 
 
     try {
       const res = await axios.post('/api/findblogs', { category: 'all' });
-      
+
       setData(res.data.post)
       setLoadings({ display: 'none' });
       document.body.style.overflow = 'auto';
@@ -92,7 +92,7 @@ export default function Home() {
 
   return (
     <>
-      <div style={loadings} className='w-full h-screen absolute flex items-center justify-center top-0 left-0 bg-[#0000005b] '>
+      <div style={loadings} className='w-full  h-screen absolute flex items-center justify-center top-0 left-0 bg-[#0000005b] '>
         <Image
           className=" object-cover    "
           src={loading}
@@ -103,74 +103,87 @@ export default function Home() {
 
       <div className="w-full h-auto py-2     bg-[#effbf6] dark:bg-[#020817]  ">
 
-          <div className="w-[90%]  py-12 lg:py-24 mx-auto flex flex-wrap ">
-            <div className="flex w-full mb-20 flex-wrap">
-              <h1 className="sm:text-3xl text-2xl font-medium title-font lg:w-1/3 lg:mb-0 mb-4">Master Cleanse Reliac Heirloom</h1>
-              <p className="lg:pl-6 lg:w-2/3 mx-auto leading-relaxed text-base">Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores aliquam fugiat nihil facilis itaque exercitationem error ipsam totam tempora earum modi voluptatem quisquam maxime unde at aut architecto, quia ea!</p>
-            </div>
-            {
-              data.length > 0 ? (
+        <div className="w-[90%]  py-12 lg:py-24 mx-auto flex flex-wrap ">
+          <div className="flex w-full mb-20 flex-wrap">
+            <h1 className="sm:text-3xl text-2xl font-medium  title-font lg:w-1/3 lg:mb-0 mb-4">
+            Party&Vibes Where Every  Celebration Comes to Life!  
+            </h1>
+            <p className="lg:pl-6 lg:w-2/3 mx-auto leading-relaxed text-base">
 
 
-                <div className="flex flex-wrap  cursor-pointer  md:-m-2 -m-1">
-                  <div onClick={() => handelredrict(data[0].title)} className="flex flex-wrap w-1/2">
-                    <div className="md:p-2 relative hidden lg:block md:hidden p-1 w-1/2">
-                      <img alt="gallery" className="w-full  object-cover h-full object-center block" src={data[0].image} />
-                      <div className='absolute  w-full py-2 px-1 h-full bottom-0  text-white text-xl  left-0'>
-                        <p className='bg-[#0000005b] w-full h-full flex justify-center overflow-hidden  items-center text-center  '>
-                        {data[0].title} 
-                        </p>
-                        
-                      </div>
-                    </div>
-                    <div onClick={() => handelredrict(data[1].title)} className="md:p-2 relative hidden lg:block md:hidden p-1 w-1/2">
-                      <img alt="gallery" className="w-full object-cover h-full object-center block" src={data[1].image} />
-                      <div className='absolute  w-full py-2 px-1 h-full bottom-0  text-white text-xl  left-0'>
-                        <p className='bg-[#0000005b] w-full h-full flex justify-center overflow-hidden  items-center text-center  '>
-                        {data[1].title} 
-                        </p>
-                        
-                      </div>
-                    </div>
-                    <div onClick={() => handelredrict(data[2].title)} className=" m-1 relative  w-full">
-                      <img alt="gallery" className="w-full h-full object-cover object-center block" src={data[2].image} />
-                      <p className='absolute hidden lg:block md:block overflow-hidden w-full h-1/2 top-1/2 text-white bg-[#00000081] md:text-3xl  lg:text-3xl px-5 left-0'>
-                        {data[2].title} <br />
-                        <span className='text-lg text-gray-300 pr-4 font-semibold lg:inline-block md:inline-block md:mt-3 line-clamp-3'>{data[2].discription}</span>
+              Party&Vibes is your ultimate destination for all things party-related! From the latest trends in party planning and decoration to exciting event ideas, music, and vibes, we got you covered. Whether your hosting a cozy gathering or a grand celebration, Party&Vibes inspires you to make every event unforgettable. Lets turn your party dreams into reality—one blog at a time!
+
+
+
+
+
+
+
+            </p>
+          </div>
+          {
+            data.length > 0 ? (
+
+
+              <div className="flex flex-wrap  cursor-pointer  md:-m-2 -m-1">
+                <div className="flex flex-wrap w-1/2">
+                  <div onClick={() => handelredrict(data[0].title)}  className="md:p-2 relative hidden lg:block md:hidden p-1 w-1/2">
+                    <img alt="gallery" className="w-full  object-cover h-full object-center block" src={data[0].image} />
+                    <div className='absolute  w-full py-2 px-1 h-full bottom-0  text-white text-xl  left-0'>
+                      <p className='bg-[#0000005b] px-5 w-full h-full flex justify-center overflow-hidden  items-center text-center  '>
+                        {data[0].title}
                       </p>
+
                     </div>
                   </div>
-                  <div className="flex flex-wrap  w-1/2">
-                    <div onClick={() => handelredrict(data[3].title)} className="relative m-1 w-full">
-                      <img alt="gallery" className="w-full h-full object-cover object-center block" src={data[3].image} />
-                      <p className='absolute  lg:block md:block hidden w-full h-1/2 top-1/2 text-white bg-[#00000081] text-3xl px-5 left-0'>
-                        {data[3].title} <br />
-                        <span className='text-lg text-gray-300 pr-4 font-semibold lg:inline-block md:hidden line-clamp-3'>{data[3].discription}</span>
-                        
+                  <div onClick={() => handelredrict(data[1].title)} className="md:p-2 relative hidden lg:block md:hidden p-1 w-1/2">
+                    <img alt="gallery" className="w-full object-cover h-full object-center block" src={data[1].image} />
+                    <div className='absolute  w-full py-2 px-1 h-full bottom-0  text-white text-xl  left-0'>
+                      <p className='bg-[#0000005b]  px-5 w-full h-full flex justify-center overflow-hidden  items-center text-center  '>
+                        {data[1].title}
                       </p>
+
                     </div>
-                    <div onClick={() => handelredrict(data[4].title)} className="md:p-2 p-1 relative flex-grow w-1/2">
-                      <img alt="gallery" className="w-full object-cover h-full object-center block" src={data[4].image} />
-                      <div className='absolute hidden lg:block md:block w-full py-2 px-1 h-full bottom-0  text-white text-xl  left-0'>
-                        <p className='bg-[#0000005b] w-full h-full flex justify-center overflow-hidden  items-center text-center  '>
-                        {data[4].title} 
-                        </p>
-                        
-                      </div>
+                  </div>
+                  <div onClick={() => handelredrict(data[2].title)} className=" m-1 relative  w-full">
+                    <img alt="gallery" className="w-full h-full object-cover object-center block" src={data[2].image} />
+                    <p className='absolute hidden lg:block md:block overflow-hidden w-full h-1/2 top-1/2 text-white bg-[#00000081] md:text-3xl  lg:text-3xl px-5 left-0'>
+                      {data[2].title} <br />
+                      <span className='text-lg text-gray-300 pr-4 font-semibold lg:inline-block md:inline-block md:mt-3 line-clamp-3'>{data[2].discription}</span>
+                    </p>
+                  </div>
+                </div>
+                <div className="flex flex-wrap  w-1/2">
+                  <div onClick={() => handelredrict(data[3].title)} className="relative m-1 w-full">
+                    <img alt="gallery" className="w-full h-full object-cover object-center block" src={data[3].image} />
+                    <p className='absolute  lg:block md:block hidden w-full h-1/2 top-1/2 text-white bg-[#00000081] text-3xl px-5 left-0'>
+                      {data[3].title} <br />
+                      <span className='text-lg text-gray-300 pr-4 font-semibold lg:inline-block md:hidden line-clamp-3'>{data[3].discription}</span>
+
+                    </p>
+                  </div>
+                  <div onClick={() => handelredrict(data[4].title)} className="md:p-2 p-1 relative flex-grow w-1/2">
+                    <img alt="gallery" className="w-full object-cover h-full object-center block" src={data[4].image} />
+                    <div className='absolute hidden lg:block md:block w-full py-2 px-1 h-full bottom-0  text-white text-xl  left-0'>
+                      <p className='bg-[#0000005b]  px-5 w-full h-full flex justify-center overflow-hidden  items-center text-center  '>
+                        {data[4].title}
+                      </p>
+
                     </div>
-                    <div onClick={() => handelredrict(data[5].title)} className="md:p-2 p-1 relative hidden lg:block  w-1/2">
-                      <img alt="gallery" className="w-full object-cover h-full object-center block" src={data[5].image} />
-                      <div className='absolute  w-full py-2 px-1 h-full bottom-0  text-white text-xl  left-0'>
-                        <p className='bg-[#0000005b] w-full h-full flex justify-center overflow-hidden  items-center text-center  '>
-                        {data[5].title} 
-                        </p>
-                        
-                      </div>
+                  </div>
+                  <div onClick={() => handelredrict(data[5].title)} className="md:p-2 p-1 relative hidden lg:block  w-1/2">
+                    <img alt="gallery" className="w-full object-cover h-full object-center block" src={data[5].image} />
+                    <div className='absolute  w-full py-2 px-1 h-full bottom-0  text-white text-xl  left-0'>
+                      <p className='bg-[#0000005b] w-full h-full  px-5 flex justify-center overflow-hidden  items-center text-center  '>
+                        {data[5].title}
+                      </p>
+
                     </div>
                   </div>
                 </div>
-              ) : ""}
-          </div>
+              </div>
+            ) : ""}
+        </div>
 
 
       </div>
@@ -235,15 +248,15 @@ export default function Home() {
           </h1>
         </div>
       </motion.div>
-      <motion.div initial={{ y: 200 }} whileInView={{ y: 0 }} transition={{ delay: 0.5, duration: 0.5, type: 'spring', stiffness: 150 }} viewport={{ once: true }}>
+      <motion.div initial={{ opacity:0, y: 100 }} whileInView={{ opacity:1,y: 0 }} transition={{  duration: 0.7 }} viewport={{ once: true }}>
 
         <h1 className=" w-[90%] mx-auto  text-3xl lg:text-4xl mb-10 mt-20" >Latest Articles To Read :</h1>
-        <div className="flex w-[88%] flex-col   gap-5   mx-auto h-auto ">
+        <div className="flex w-[88%] flex-col   gap-10   mx-auto h-auto ">
           {
             data.sort((a, b) => new Date(b.date) - new Date(a.date)).slice(0, 4).map((data) => (
 
-              <div key={data._id} className="lg:col-span-2 md:h-[200px] h-[80px] lg:h-[200px]  flex     md:p-0 lg:border-none md:border-none  flex-row md:flex-row gap-2 items-center justify-between">
-                <img src={data.image} className="object-cover h-full  md:w-[300px] w-1/3 lg:w-[300px] " alt="" />
+              <div key={data._id} className=" md:h-[200px] h-[80px]   flex md:p-0  md:border-none  flex-row md:flex-row gap-2 items-center justify-between">
+                <img src={data.image} className="object-cover h-full  md:w-1/2" alt="" />
                 <div className="  w-full  flex flex-col  gap-1 h-auto lg:h-full md:h-full items-start md:justify-evenly justify-start lg:justify-evenly ">
 
                   <h1 className="md:text-3xl text-lg font-medium lg:text-3xl line-clamp-3">{data.title}</h1>

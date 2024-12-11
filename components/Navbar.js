@@ -29,7 +29,7 @@ const Navbar = () => {
     className="sticky  bg-white top-0 items-center h-[80px] z-[100] w-full backdrop-blur-lg bg-opacity-10">
       <div className="container flex justify-between items-center h-full mx-auto w-full">
         <div className="text-3xl font-bold bg-gradient-to-l from-indigo-500 via-green-700 to-green-600 bg-clip-text text-transparent">
-          ZainBloooGer
+          Party&Vibes
         </div>
 
         {/* Desktop Menu */}
